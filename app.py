@@ -328,7 +328,6 @@ def main():
           <div class="triangle"></div>
           <div class="fill"></div>
           {st.session_state['YOU'+str(i)]}
-    	</div>
         """
         st.markdown(md1, unsafe_allow_html=True)
         st.markdown(md2, unsafe_allow_html=True)
