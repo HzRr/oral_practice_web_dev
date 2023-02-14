@@ -170,14 +170,7 @@ def main():
         respond_mod="text-curie-001"
         sugg_mod="text-curie-001"
      
-    Preset = st.text_input('Preset', placeholder="Enter the scene setting")
-    #st.write('The current movie title is', title)
-    
-    
-    
-    
-    
-      
+    Preset = st.text_input('Preset', placeholder="Enter the scene setting")  
     
     with st.sidebar:
         st.markdown("""
@@ -240,11 +233,8 @@ def main():
             rtc={"iceServers": [{"urls": ["stun:stun4.l.google.com:19302"]}]}
         for i in range(6, len(serverlist)):
             if stun_mode==serverlist[i]:
-                rtc={"iceServers": [{"urls": ["stun:"+serverlist[i]+":3487"]}]}
-            
-            
-
-        
+                rtc={"iceServers": [{"urls": ["stun:"+serverlist[i]+":3487"]}]}     
+    
         app_sst_side()
         if st.button('clear'):
             for key in ['count','conv','sugg']:
