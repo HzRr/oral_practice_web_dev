@@ -23,7 +23,7 @@ def autoplay_audio(b64):
 
     md = f"""
             <audio autoplay="true">
-            <source src="data:audio/mp3;base64,{b64}" type="audio/wav">
+            <source src="data:audio/wav;base64,{b64}" type="audio/wav">
             </audio>
             """
     st.markdown(
@@ -266,22 +266,76 @@ def main():
     for i in range(st.session_state['count']):
             st.markdown("""
     <style>
-      .type1 {
-        background-color: green;
-        padding: 10px;
-        border-radius: 10px;
+      .chat {
+            position: relative;
+            max-width: 260px;
+            padding: 10px 6px;
+            border: 2px solid #ccc;
+            margin-top: 50px;
+            margin-left: 50px;
+            border-radius: 5px;
+            word-break: break-all;
       }
-      .type2 {
-        background-color: grey;
-        padding: 10px;
-        border-radius: 10px;
+
+      .triangle,
+      .triangle_two {
+            position: absolute;
+            top: 15px;
+            border-width: 10px;
+            border-style: solid;
+      }
+
+      .triangle {
+            left: -20px;
+            border-color: transparent #ccc transparent transparent;
+      }
+
+      .triangle_two {
+            right: -20px;
+            border-color: transparent transparent transparent #ccc;
+      }
+
+      .fill,
+      .fill_two {
+            position: absolute;
+            top: 15px;
+            border-width: 10px;
+            border-style: solid;
+        }
+
+      .fill {
+        left: -16px;
+        border-color: transparent #fff transparent transparent;
+        }
+
+      .fill_two {
+        right: -16px;
+        border-color: transparent transparent transparent #fff;
       }
     </style>
     """, unsafe_allow_html=True)
-            t_y="<div class='type1'> "+st.session_state['ME'+str(i)]+"</div>"
-            t_a="<div class='type2'> "+st.session_state['YOU'+str(i)]+"</div>"
-            st.write('you said: '+ t_y, unsafe_allow_html=True)
-            st.write('AI said: '+ t_a, unsafe_allow_html=True)
+            md  = f"""
+        <div align="right">:YOU</div>
+        <div class="chat">
+          <div class="triangle"></div>
+          <div class="fill"></div>
+          {st.session_state['ME'+str(i)]}
+    	</div>
+    	<div align="left">AI:
+          <audio controls height="100" width="100">
+            <source src="data:audio/wav;base64,{b64_record}" type="audio/wav">
+          </audio>
+    	</div>
+    	<div class="chat">
+          <div class="triangle_two"></div>
+          <div class="fill_two"></div>
+          {st.session_state['YOU'+str(i)]}
+    	</div>
+            """
+            t_y="<div class='type1'> "++"</div>"
+            t_a="<div class='type2'> "++"</div>"
+            st.write(':You'+ t_y, unsafe_allow_html=True)
+            st.write('AI:'+ t_a, unsafe_allow_html=True)
     
     app_sst_main()
     
