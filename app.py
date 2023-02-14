@@ -271,7 +271,7 @@ def main():
     <style>
       .chat {
             position: relative;
-            max-width: 260px;
+            max-width: 345px;
             padding: 10px 6px;
             border: 2px solid #ccc;
             margin-top: 50px;
@@ -317,21 +317,24 @@ def main():
       }
     </style>
     """, unsafe_allow_html=True)
-        md = f"""
+        md1 = f"""
         <div align="right">:YOU</div>
         <div class="chat">
           <div class="triangle"></div>
           <div class="fill"></div>
           {st.session_state['ME'+str(i)]}
     	</div>
+    	"""
+    	md2 = f"""
     	<div align="left">AI:</div>
     	<div class="chat">
           <div class="triangle_two"></div>
           <div class="fill_two"></div>
           {st.session_state['YOU'+str(i)]}
     	</div>
-            """
-        st.write(md, unsafe_allow_html=True)
+        """
+        st.markdown(md1, unsafe_allow_html=True)
+        st.markdown(md2, unsafe_allow_html=True)
     
     app_sst_main()
     
