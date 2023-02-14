@@ -502,10 +502,10 @@ def app_sst_main():
         else:
             status_indicator.write("AudioReciver is not set. Abort.")
             break
-    sound1.export("output.wav", format="wav")
+    # sound1.export("output.wav", format="wav")
     #buffer =np.array(sound1.get_array_of_samples())
     
-    st.write(sound1)
+    # st.write(sound1)
     status_indicator.write("Starting recognition and don't press stop")
     
     # st.write(sound_window_buffer)
