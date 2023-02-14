@@ -322,7 +322,6 @@ def main():
           <div class="triangle_two"></div>
           <div class="fill_two"></div>
           {st.session_state['ME'+str(i)]}
-    	</div>
     	"""
         md2 = f"""
     	<div class="chat">
@@ -398,10 +397,10 @@ def app_sst_side():
         else:
             status_indicator.write("AudioReciver is not set. Abort.")
             break
-    sound1.export("output.wav", format="wav")
-    buffer =np.array(sound1.get_array_of_samples())
+    # sound1.export("output.wav", format="wav")
+    # buffer =np.array(sound1.get_array_of_samples())
     
-    st.write(sound1)
+    # st.write(sound1)
     status_indicator.write("Starting recognition and don't press stop")
     
     # st.write(sound_window_buffer)
@@ -500,10 +499,10 @@ def app_sst_main():
         else:
             status_indicator.write("AudioReciver is not set. Abort.")
             break
-    sound1.export("output.wav", format="wav")
-    #buffer =np.array(sound1.get_array_of_samples())
+    # sound1.export("output.wav", format="wav")
+    # buffer =np.array(sound1.get_array_of_samples())
     
-    st.write(sound1)
+    # st.write(sound1)
     status_indicator.write("Starting recognition and don't press stop")
     
     # st.write(sound_window_buffer)
