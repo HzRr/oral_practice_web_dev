@@ -19,6 +19,17 @@ HERE = Path(__file__).parent
 
 logger = logging.getLogger(__name__)
 
+def show_audio(b64):
+    
+    md = f"""
+          <audio controls height="100" width="100">
+            <source src="data:audio/wav;base64,{b64}" type="audio/wav">
+          </audio>
+    """
+    st.markdown(md,
+            unsafe_allow_html=True,
+            )
+
 def autoplay_audio(b64):
 
     md = f"""
@@ -312,9 +323,6 @@ def main():
           {st.session_state['ME'+str(i)]}
     	</div>
     	<div align="left">AI:
-          <audio controls height="100" width="100">
-            <source src="data:audio/wav;base64,{b64_record}" type="audio/wav">
-          </audio>
     	</div>
     	<div class="chat">
           <div class="triangle_two"></div>
@@ -329,8 +337,6 @@ def main():
 def app_sst_side():
     global buffer
     global sugg
-    global b64_record
-    
     webrtc_ctx = webrtc_streamer(
         key="speech-to-text_side",
         mode=WebRtcMode.SENDONLY,
@@ -418,6 +424,7 @@ def app_sst_side():
     
     b64_record = tts(st.secrets["SecretId"], st.secrets["SecretKey"], new_you)
     autoplay_audio(b64_record)
+    show_audio(b64_record)
     
     You_temp='YOU'+str(st.session_state['count']-1)
     
@@ -432,8 +439,6 @@ def app_sst_side():
 def app_sst_main():
     global buffer
     global sugg
-    global b64_record
-    
     webrtc_ctx = webrtc_streamer(
         key="speech-to-text_main",
         mode=WebRtcMode.SENDONLY,
@@ -522,6 +527,7 @@ def app_sst_main():
     
     b64_record = tts(st.secrets["SecretId"], st.secrets["SecretKey"], new_you)
     autoplay_audio(b64_record)
+    show_audio(b64_record)
     
     You_temp='YOU'+str(st.session_state['count']-1)
     
