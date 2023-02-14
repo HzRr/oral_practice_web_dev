@@ -22,9 +22,11 @@ logger = logging.getLogger(__name__)
 def show_audio(b64):
     
     md = f"""
+          <div>AI said:
           <audio controls height="100" width="100">
             <source src="data:audio/wav;base64,{b64}" type="audio/wav">
           </audio>
+          </div>
     """
     st.markdown(md,
             unsafe_allow_html=True,
@@ -322,8 +324,7 @@ def main():
           <div class="fill"></div>
           {st.session_state['ME'+str(i)]}
     	</div>
-    	<div align="left">AI:
-    	</div>
+    	<div align="left">AI:</div>
     	<div class="chat">
           <div class="triangle_two"></div>
           <div class="fill_two"></div>
