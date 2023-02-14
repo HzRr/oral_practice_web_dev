@@ -519,6 +519,7 @@ def app_sst_main():
     Me_temp='ME'+str(st.session_state['count']-1)
     new_you=respond(st.session_state['conv'],respond_mod,st.secrets["openaikey"])
     
+    global b64_record
     b64_record = tts(st.secrets["SecretId"], st.secrets["SecretKey"], new_you)
     autoplay_audio(b64_record)
     
