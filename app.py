@@ -254,7 +254,7 @@ def main():
         st.write('suggestion:'+st.session_state['sugg'])
         
     for i in range(st.session_state['count']):
-            st.markdown("""
+        st.markdown("""
     <style>
       .chat {
             position: relative;
@@ -304,7 +304,7 @@ def main():
       }
     </style>
     """, unsafe_allow_html=True)
-            md  = f"""
+            md = f"""
         <div align="right">:YOU</div>
         <div class="chat">
           <div class="triangle"></div>
@@ -322,16 +322,15 @@ def main():
           {st.session_state['YOU'+str(i)]}
     	</div>
             """
-            t_y="<div class='type1'> "++"</div>"
-            t_a="<div class='type2'> "++"</div>"
-            st.write(':You'+ t_y, unsafe_allow_html=True)
-            st.write('AI:'+ t_a, unsafe_allow_html=True)
+        st.write(md, unsafe_allow_html=True)
     
     app_sst_main()
     
 def app_sst_side():
     global buffer
     global sugg
+    global b64_record
+    
     webrtc_ctx = webrtc_streamer(
         key="speech-to-text_side",
         mode=WebRtcMode.SENDONLY,
@@ -417,7 +416,6 @@ def app_sst_side():
     Me_temp='ME'+str(st.session_state['count']-1)
     new_you=respond(st.session_state['conv'],respond_mod,st.secrets["openaikey"])
     
-    global b64_record
     b64_record = tts(st.secrets["SecretId"], st.secrets["SecretKey"], new_you)
     autoplay_audio(b64_record)
     
@@ -434,6 +432,8 @@ def app_sst_side():
 def app_sst_main():
     global buffer
     global sugg
+    global b64_record
+    
     webrtc_ctx = webrtc_streamer(
         key="speech-to-text_main",
         mode=WebRtcMode.SENDONLY,
@@ -520,7 +520,6 @@ def app_sst_main():
     Me_temp='ME'+str(st.session_state['count']-1)
     new_you=respond(st.session_state['conv'],respond_mod,st.secrets["openaikey"])
     
-    global b64_record
     b64_record = tts(st.secrets["SecretId"], st.secrets["SecretKey"], new_you)
     autoplay_audio(b64_record)
     
